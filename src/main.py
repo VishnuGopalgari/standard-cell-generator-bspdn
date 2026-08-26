@@ -6,6 +6,8 @@ from topology.interpreter import TopologyInterpreter
 from topology.analysis import TopologyAnalyzer
 from topology.euler import EulerAnalyzer
 
+from technology import gt3, layers, rules
+
 
 def main():
 
@@ -271,6 +273,27 @@ def main():
                 f" {t2.name} gate: {t2.gate.name}, "
                 f"M={t2.multiplicity}"
             )
+
+    # ---------------------------------------------------------
+    # 7. GT3 technology
+    # ---------------------------------------------------------
+
+    print("\n" + "=" * 60)
+    print("GT3 TECHNOLOGY")
+    print("=" * 60)
+
+    gt3.show()
+
+    print("\nPhysical layers:")
+    for tier in ["FEOL", "MOL", "BSPDN", "BEOL"]:
+        layers.show(tier)
+
+    print("\nDesign rules:")
+    for layer in ["GATE", "OD", "SDCON", "M0", "M1"]:
+        rules.show(layer)
+
+    print("\nPhysical size of this cell:")
+    gt3.show_cell(cell)
 
 
 if __name__ == "__main__":
